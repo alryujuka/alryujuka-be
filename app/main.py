@@ -1,12 +1,21 @@
 from fastapi import FastAPI
 from app.database import engine, Base
 from app.routers import user_router, namul_category_router
+from fastapi.middleware.cors import CORSMiddleware
 import os
 
 # 데이터베이스 생성
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # 라우터 등록
 app.include_router(user_router.router)
