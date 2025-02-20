@@ -10,10 +10,10 @@ class Namul(Base):
     addr = Column(String(255), nullable=False)
     longitude = Column(Float, nullable=False)
     latitude = Column(Float, nullable=False)
-    # category_id = Column(BigInteger, ForeignKey("category.id", ondelete="SET NULL"), nullable=True)
+    category_id = Column(BigInteger, ForeignKey("namul_category.id"))
     created_at = Column(DateTime, server_default=func.now())
 
-    # category = relationship("NamulCategory", back_populates="namuls")
+    category = relationship("NamulCategory", back_populates="namul")
     # likes = relationship("Like", back_populates="namuls", cascade="all, delete")
     # visitors = relationship("Visitor", back_populates="namuls", cascade="all, delete")
     # routes = relationship("NamulRouteType", back_populates="namuls", cascade="all, delete")

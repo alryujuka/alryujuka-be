@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.database import engine, Base
-from app.routers import user_router, namul_category_router
+from app.routers import user_router, namul_category_router, namul_router
 from fastapi.middleware.cors import CORSMiddleware
 import os
 
@@ -20,6 +20,7 @@ app.add_middleware(
 # 라우터 등록
 app.include_router(user_router.router)
 app.include_router(namul_category_router.router)
+app.include_router(namul_router.router)
 
 @app.get("/")
 def read_root():
