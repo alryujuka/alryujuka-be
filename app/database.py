@@ -1,10 +1,6 @@
 import os
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import sessionmaker, declarative_base
-from dotenv import load_dotenv
-
-# .env 파일 로드
-load_dotenv()
 
 # 환경 변수에서 DB 정보 가져오기
 # DB_USER = os.getenv("DB_USER")
