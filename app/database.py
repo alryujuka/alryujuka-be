@@ -13,7 +13,8 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 # DATABASE_URL= "mysql+pymysql://root:root@mariadb:3306/krampoline"
 
 # DB 엔진 생성
-engine = create_engine(f"mysql+pymysql://root:root@mariadb:3306/krampoline")
+engine = create_engine("mysql+pymysql://root:root@mariadb:3306/krampoline")
+print(engine)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
