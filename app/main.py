@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.database import engine, Base
-from app.routers import user_router, namul_category_router, namul_router
+from app.routers import user_router, namul_category_router, namul_router, place_router
 from fastapi.middleware.cors import CORSMiddleware
 import os
 from fastapi.responses import RedirectResponse
@@ -22,6 +22,7 @@ app.add_middleware(
 app.include_router(user_router.router)
 app.include_router(namul_category_router.router)
 app.include_router(namul_router.router)
+app.include_router(place_router.router)
 
 @app.get("/")
 def read_root():
@@ -35,7 +36,3 @@ def test():
 def get_env():
     database_url = os.environ.get("DATABASE_URL", "환경 변수 없음")
     return {"DATABASE_URL": database_url}
-
-@app.get("/go-docs")
-def get_docs():
-    return RedirectResponse(url="/docs")

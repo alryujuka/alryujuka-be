@@ -5,3 +5,4 @@ pymysql
 passlib[bcrypt]
 dotenv
 pydantic[email]
+httpx
