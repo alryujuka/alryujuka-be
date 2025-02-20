@@ -1,16 +1,62 @@
-version: '3.8'
-
-services:
-  db:
-    image: mariadb
-    container_name: mariadb-container
-    restart: always
-    env_file:
-      - .env
-    environment:
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${DB_NAME}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-    ports:
-      - "3306:3306"
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: fastapi-app
+spec:
+  serviceName: fastapi-app
+  selector:
+    matchLabels:
+      app: fastapi-app
+  template:
+    metadata:
+      labels:
+        app: fastapi-app
+    spec:
+      containers:
+        - name: fastapi
+          # FastAPI의 Docker 이미지 주소를 입력하세요.
+          image: krmp-d2hub-idock.9rum.cc/dev-test/repo_0532e88fe46e
+          env:
+            - name: TZ
+              value: Asia/Seoul
+            - name: DATABASE_URL
+              value: "mysql+pymysql://root:root@mariadb:3306/krampoline"
+            - name: UVICORN_PORT
+              value: "8000"
+          ports:
+            - containerPort: 8000
+          volumeMounts:
+            - mountPath: /app
+              name: app-storage
+          resources:
+            limits:
+              memory: 512Mi
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fastapi-app
+spec:
+  type: ClusterIP
+  selector:
+    app: fastapi-app
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: app-storage
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Mi
