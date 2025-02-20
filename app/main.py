@@ -8,7 +8,7 @@ from fastapi.responses import RedirectResponse
 # 데이터베이스 생성
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI()
+app = FastAPI(prefix="/api")
 
 app.add_middleware(
     CORSMiddleware,
