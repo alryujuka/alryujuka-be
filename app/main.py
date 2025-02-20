@@ -3,6 +3,7 @@ from app.database import engine, Base
 from app.routers import user_router, namul_category_router, namul_router
 from fastapi.middleware.cors import CORSMiddleware
 import os
+from fastapi.responses import RedirectResponse
 
 # 데이터베이스 생성
 Base.metadata.create_all(bind=engine)
@@ -34,3 +35,7 @@ def test():
 def get_env():
     database_url = os.environ.get("DATABASE_URL", "환경 변수 없음")
     return {"DATABASE_URL": database_url}
+
+@app.get("/go-docs")
+def get_docs():
+    return RedirectResponse(url="/docs")
