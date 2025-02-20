@@ -2,30 +2,11 @@ import os
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import sessionmaker, declarative_base
 
-# 환경 변수에서 DB 정보 가져오기
-# DB_USER = os.getenv("DB_USER")
-# DB_PASSWORD = os.getenv("DB_PASSWORD")
-# DB_NAME = os.getenv("DB_NAME")
-# DB_HOST = os.getenv("DB_HOST")
-# DB_PORT = os.getenv("DB_PORT")
-# DATABASE_URL = os.getenv("DATABASE_URL")
-# DATABASE_URL = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-# DATABASE_URL= "mysql+pymysql://root:root@mariadb:3306/krampoline"
-
 # DB 엔진 생성
 engine = create_engine("mysql+pymysql://root:root@mariadb:3306/krampoline")
 print(engine)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
-
-# user 테이블 모델 정의
-class User(Base):
-    __tablename__ = "user"
-    
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String(50), unique=True, index=True)
-    email = Column(String(100), unique=True, index=True)
-    password = Column(String(200))
     
 # 데이터베이스 초기화 함수
 def init_db():
