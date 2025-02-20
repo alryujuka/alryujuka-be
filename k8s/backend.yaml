@@ -22,14 +22,14 @@ spec:
             - name: DATABASE_URL
               value: "mysql+pymysql://root:root@mariadb:3306/krampoline"
             - name: UVICORN_PORT
-              value: "8000"
+              value: "8080"
           resources:
             requests:
               memory: 1Gi
           readinessProbe:
             httpGet:
               path: /api/test
-              port: 8000
+              port: 8080
 ---
 apiVersion: v1
 kind: Service
@@ -39,5 +39,5 @@ spec:
   selector:
     app: backend
   ports:
-    - port: 8000
-      targetPort: 8000
+    - port: 8080
+      targetPort: 8080
