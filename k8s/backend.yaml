@@ -39,5 +39,5 @@ spec:
   selector:
     app: backend
   ports:
-    - port: 8080
+    - port: 8000
       targetPort: 8000
