@@ -27,3 +27,26 @@ spec:
   ports:
     - port: 3000
       targetPort: 3000
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend
+  namespace: default
+data: # key-value 형식으로 데이터 정의
+  NEXT_PUBLIC_KAKAO_KEY: "8773e5bd8b2289d110206a4c37365a40"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: frontend
+spec:
+  containers:
+    - name: mycontainer
+      image: myapp:latest
+      env:
+        - name: NEXT_PUBLIC_KAKAO_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: frontend # ConfigMap의 Metadata의 name
+              key: NEXT_PUBLIC_KAKAO_KEY
