@@ -15,6 +15,10 @@ app.include_router(user_router.router)
 def read_root():
     return {"message": "Welcome to FastAPI with MariaDB!"}
 
+@app.get("/api/test")
+def test():
+    return {"message": "OK"}
+
 @app.get("/api/env")
 def get_env():
     database_url = os.environ.get("DATABASE_URL", "환경 변수 없음")
