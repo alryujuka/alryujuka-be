@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from app.database import get_db
 from app.views import namul_category_schema
 from app.service import namul_category_service
+import json
 
 router = APIRouter(
     prefix="/namuls/category",
