@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.database import engine, Base
-from app.routers import user_router, namul_category_router, namul_router, place_router
+from app.routers import user_router, namul_category_router, namul_router, place_router, custom_category_router, route_router, namul_location_router
 from fastapi.middleware.cors import CORSMiddleware
 import os
 from fastapi.responses import RedirectResponse
@@ -8,7 +8,7 @@ from fastapi.responses import RedirectResponse
 # 데이터베이스 생성
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI()
+app = FastAPI(openapi_prefix="/api/v1")
 
 app.add_middleware(
     CORSMiddleware,
@@ -23,6 +23,9 @@ app.include_router(user_router.router)
 app.include_router(namul_category_router.router)
 app.include_router(namul_router.router)
 app.include_router(place_router.router)
+app.include_router(custom_category_router.router)
+app.include_router(route_router.router)
+app.include_router(namul_location_router.router)
 
 @app.get("/")
 def read_root():
