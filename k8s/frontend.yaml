@@ -17,21 +17,21 @@ spec:
           # 여러분의 frontend image 주소를 입력해주세요.
           image: krmp-d2hub-idock.9rum.cc/dev-test/repo_455a1823786a
           env:
-          - name: NEXT_PUBLIC_KAKAO_KEY
-            valueFrom:
-              configMapKeyRef:
-                name: frontend # ConfigMap의 Metadata의 name
-                key: next_public_kakao_key
-          - name: NEXT_PUBLIC_OPENWEATHER_API_KEY
-            valueFrom:
-              configMapKeyRef:
-                name: frontend # ConfigMap의 Metadata의 name
-                key: next_public_openweather_api_key
-          - name: NEXT_PUBLIC_API_URL
-            valueFrom:
-              configMapKeyRef:
-                name: frontend # ConfigMap의 Metadata의 name
-                key: next_public_api_url
+            - name: NEXT_PUBLIC_KAKAO_KEY
+              valueFrom:
+                configMapKeyRef:
+                  name: frontend
+                  key: next_public_kakao_key
+            - name: NEXT_PUBLIC_OPENWEATHER_API_KEY
+              valueFrom:
+                configMapKeyRef:
+                  name: frontend
+                  key: next_public_openweather_api_key
+            - name: NEXT_PUBLIC_API_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: frontend
+                  key: next_public_api_url
 ---
 apiVersion: v1
 kind: Service
