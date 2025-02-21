@@ -22,6 +22,16 @@ spec:
               configMapKeyRef:
                 name: frontend # ConfigMap의 Metadata의 name
                 key: next_public_kakao_key
+          - name: NEXT_PUBLIC_OPENWEATHER_API_KEY
+            valueFrom:
+              configMapKeyRef:
+                name: frontend # ConfigMap의 Metadata의 name
+                key: next_public_openweather_api_key
+          - name: NEXT_PUBLIC_API_URL
+            valueFrom:
+              configMapKeyRef:
+                name: frontend # ConfigMap의 Metadata의 name
+                key: next_public_api_url
 ---
 apiVersion: v1
 kind: Service
