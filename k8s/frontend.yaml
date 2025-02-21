@@ -21,17 +21,17 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: frontend
-                  key: next_public_kakao_key
+                  key: NEXT_PUBLIC_KAKAO_KEY
             - name: NEXT_PUBLIC_OPENWEATHER_API_KEY
               valueFrom:
                 configMapKeyRef:
                   name: frontend
-                  key: next_public_openweather_api_key
+                  key: NEXT_PUBLIC_OPENWEATHER_API_KEY
             - name: NEXT_PUBLIC_API_URL
               valueFrom:
                 configMapKeyRef:
                   name: frontend
-                  key: next_public_api_url
+                  key: NEXT_PUBLIC_API_URL
 ---
 apiVersion: v1
 kind: Service
