@@ -32,6 +32,11 @@ spec:
                 configMapKeyRef:
                   name: frontend
                   key: NEXT_PUBLIC_API_URL
+            - name: NEXT_PUBLIC_SITE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: frontend
+                  key: NEXT_PUBLIC_SITE_URL
 ---
 apiVersion: v1
 kind: Service
