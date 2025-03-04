@@ -7,4 +7,3 @@ data: # key-value 형식으로 데이터 정의
   NEXT_PUBLIC_KAKAO_KEY: "8773e5bd8b2289d110206a4c37365a40"
   NEXT_PUBLIC_OPENWEATHER_API_KEY: "1e821448222581ec42dde74249d959e4"
   NEXT_PUBLIC_API_URL: "https://k7e560c565a73a.user-app.krampoline.com/api/v1"
-  TEST: "test"
